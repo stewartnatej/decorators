@@ -4,7 +4,7 @@ from functools import wraps
 # basic try/except which allows processing to continue
 # used like @try_except
 def try_except(func):
-    @wraps(func)
+    @wraps(func)  # keeps the metadata from the decorated function
     def wrapper(*args, **kwargs):
         try:
             func(*args, **kwargs)
@@ -18,7 +18,7 @@ def try_except(func):
 # used like @try_except(FileNotFoundError, ValueError)
 def try_except(*exception_types):
     def my_decorator(f):
-        @wraps(f)
+        @wraps(f)  # keeps the metadata from the decorated function
         def wrapper(*args, **kwargs):
             try:
                 f(*args, **kwargs)
